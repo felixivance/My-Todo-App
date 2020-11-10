@@ -1,7 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:todo_app/models/todoModel.dart';
 import 'package:todo_app/services/auth.dart';
+import 'package:todo_app/services/database.dart';
+import 'package:todo_app/widgets/todoCard.dart';
 
 class Home extends StatefulWidget {
   final FirebaseAuth auth;
@@ -18,6 +21,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final TextEditingController _todoController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +31,7 @@ class _HomeState extends State<Home> {
         title: const Text("Todo App"),
         actions: <Widget>[
           IconButton(
+            key: ValueKey("signOut"),
             icon: const Icon(Icons.exit_to_app),
             onPressed: (){
                 Auth(auth: widget.auth).signOut();
@@ -33,6 +39,90 @@ class _HomeState extends State<Home> {
           )
         ],
       ),
+      body:Column(
+        children: <Widget>[
+          const SizedBox(
+            height:20
+          ),
+          const Text("Add Todo Here:", style: TextStyle(
+                fontSize: 20,fontWeight: FontWeight.bold
+            ),
+          ),
+          Card(
+            margin: const EdgeInsets.all(20),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                children:[
+                  Expanded(
+                    child: TextFormField(
+                      key: ValueKey("addTodoField"),
+                      controller: _todoController,
+                    ),
+                  ),
+                  IconButton(
+                    key: ValueKey("addTodoButton"),
+                    icon: const Icon(Icons.add),
+                    onPressed: (){
+                      if(_todoController.text !=''){
+                        setState(() {
+                          Database(firestore: widget.firestore).addTodo(
+                            uid: widget.auth.currentUser.uid,
+                            content: _todoController.text
+                          );
+                          _todoController.clear();
+                        });
+                      }
+                    },
+                  ),
+
+                ]
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          const Text( "Your Todo's", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Expanded(
+            child: StreamBuilder(
+              stream: Database(firestore: widget.firestore).streamTodos(uid: widget.auth.currentUser.uid),
+              builder: (BuildContext context, AsyncSnapshot<List<TodoModel>> snapshot){
+                if(snapshot.connectionState == ConnectionState.active){
+                  if(snapshot.hasError){
+                    return Center(
+                        child:Text(snapshot.error.toString())
+                    );
+                  }
+                  if(snapshot.data.isEmpty ){
+                    return const Center(
+                      child: Text("You don't have any unfinished todo's"),
+                    );
+                  }
+                  return ListView.builder(
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (_,index){
+                      return TodoCard(
+                          firestore: widget.firestore,
+                          uid: widget.auth.currentUser.uid,
+                          todo: snapshot?.data[index]
+                      );
+                    },
+                  );
+                }else{
+                  return const Center(
+                      child: Text("Loading")
+                  );
+                }
+              },
+            ),
+          )
+        ],
+      )
     );
   }
 }

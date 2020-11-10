@@ -32,11 +32,13 @@ class _LoginState extends State<Login> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 TextFormField(
+                  key: ValueKey("email"),
                   textAlign: TextAlign.center,
                   decoration: const InputDecoration(hintText: "Email Address"),
                   controller: _emailController,
                 ),
                 TextFormField(
+                  key: ValueKey("password"),
                   textAlign: TextAlign.center,
                   decoration: const InputDecoration(hintText: "Password"),
                   controller: _passwordController,
@@ -45,6 +47,7 @@ class _LoginState extends State<Login> {
                   height: 20,
                 ),
                 RaisedButton(
+                  key: ValueKey("signIn"),
                   onPressed: () async{
                       final String retVal = await Auth(auth:widget.auth)
                           .signIn(email: _emailController.text, password: _passwordController.text);
@@ -64,6 +67,7 @@ class _LoginState extends State<Login> {
                   child: const Text("Sign In"),
                 ),
                 RaisedButton(
+                  key: ValueKey("createAccount"),
                   onPressed: () async{
                     final String retVal = await Auth(auth:widget.auth)
                         .createAccount(email: _emailController.text, password: _passwordController.text);
