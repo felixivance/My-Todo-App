@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "360653608130",
+    "firebase_url": "https://friendlychat-21baa.firebaseio.com",
+    "project_id": "friendlychat-21baa",
+    "storage_bucket": "friendlychat-21baa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:360653608130:android:977b39f6852d818d29d75b",
+        "android_client_info": {
+          "package_name": "com.felixrunye.todo_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "360653608130-87uev6srnucvnnsdj0qeomg160sbj52t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6s5b_YC58aRx1Pspax4CTrE8zx_3_oio"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "360653608130-87uev6srnucvnnsdj0qeomg160sbj52t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:360653608130:android:fc582b02744a0974",
+        "android_client_info": {
+          "package_name": "com.kayasolutions.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "360653608130-2u7a7ics9pd7f6gkna6qoduncogj6pdj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kayasolutions.chatapp",
+            "certificate_hash": "e58a0319f4093a22e0b38e87c24b0efefe886cde"
+          }
+        },
+        {
+          "client_id": "360653608130-87uev6srnucvnnsdj0qeomg160sbj52t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6s5b_YC58aRx1Pspax4CTrE8zx_3_oio"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "360653608130-87uev6srnucvnnsdj0qeomg160sbj52t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
