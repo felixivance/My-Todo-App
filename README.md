@@ -2,11 +2,22 @@
 
 My flutter todo app
 
-## Getting Started
+Includes a firebase firestore backend
+email and password authentication
+crud operations on todo notes
+integrations tests
+driver tests
+mocks tests
+widget tests
 
-This project is a starting point for a Flutter application.
+//more updates coming up
 
-A few resources to get you started if this is your first Flutter project:
+reminders,
+cloud functions 
+google calendar integration
+sharing of notes with friends
+facebook, twitter, google login
+
 
 - [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
